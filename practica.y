@@ -64,6 +64,7 @@ expre:  REAL                { $$ = $1; } |
 ;
 
 expen:  ENTERO              { $$ = $1; } |
+		'-' expen     		{ $$ = - $2; } |
         expen '+' expen     { $$ = $1 + $3; } |
         expen '-' expen     { $$ = $1 - $3; } |
         expen '*' expen     { $$ = $1 * $3; } |

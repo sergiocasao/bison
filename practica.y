@@ -82,8 +82,11 @@ expca:		CADENA {$$ = $1; }
                                    $$ = s;	    }
    | expca '-' expca       {
        char* s = malloc(sizeof(char)*(strlen($1)+1));
+       strcpy(s,$1);
        char* toRemove = malloc(sizeof(char)*(strlen($3)+1));
-       printf("Si entró");
+       strcpy(s,$3);
+       printf($1);
+       printf($3);
        /*if(strlen(s) > strlen(toRemove))
             yyerror("La segunda cadena es más grande que la primera");
        else

@@ -82,13 +82,13 @@ expca:		CADENA {$$ = $1; }
                                    $$ = s;	    }
    | expca '-' expca       {
        char* s = malloc(sizeof(char)*(strlen($1)+1));
-       //char* toRemove = malloc(sizeof(char)*(strlen($3)+1));
-       //if(strlen(s) > strlen(toRemove))
-       //       yyerror("La segunda cadena es más grande que la primera");
-       // else
-        //   while( s = strstr(s, toRemove) )
-        //       memmove(s, s+strlen(toRemove),1+strlen(s+strlen(toRemove)));
-            s="hola";
+       char* toRemove = malloc(sizeof(char)*(strlen($3)+1));
+       printf("Si entró");
+       if(strlen(s) > strlen(toRemove))
+            yyerror("La segunda cadena es más grande que la primera");
+       else
+           while( s = strstr(s, toRemove) )
+               memmove(s, s+strlen(toRemove),1+strlen(s+strlen(toRemove)));
            $$ = s;
    }
 ;

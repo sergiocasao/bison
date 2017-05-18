@@ -41,7 +41,7 @@ expre:  REAL                			{ $$ = $1; } |
         expen '-' expre     			{ $$ = $1 - $3; } |
         expre '-' expen     			{ $$ = $1 - $3; } |
         expre '*' expre     			{ $$ = $1 * $3; } |
-        expre '*' expre     			{ $$ = $1 * $3; } |
+        expre '*' expen     			{ $$ = $1 * $3; } |
         expen '*' expre     			{ $$ = $1 * $3; } |
         expre '/' expre     			{
             if($3 == 0.0)

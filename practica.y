@@ -61,9 +61,9 @@ expre:  REAL                			{ $$ = $1; } |
             else
 				$$ = $1 / $3;
         } |
-		expca '(' expre ',' expre ')' 	{ $$ = pow($3,$5); } |
-		expca '(' expre ',' expen ')' 	{ $$ = pow($3,$5); } |
-		expca '(' expen ',' expre ')' 	{ $$ = pow($3,$5); }
+		expca '(' expre ',' expre ')' ';' 	{ $$ = pow($3,$5); } |
+		expca '(' expre ',' expen ')' ';' 	{ $$ = pow($3,$5); } |
+		expca '(' expen ',' expre ')' ';' 	{ $$ = pow($3,$5); }
 ;
 
 expen:  ENTERO              			{ $$ = $1; } |

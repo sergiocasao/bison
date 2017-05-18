@@ -23,13 +23,13 @@ POTENCIA [Pp][Oo][Ww]
 {CADEN}		{
 		printf("\tCadena %s\n",yytext);
 		yylval.cadena = duplicate_segment(yytext + 1, yyleng - 2);
-		return (CADENA);
+		return (CADEN);
 		}
 
 {POTENCIA}	{
-		printf("\tFuncion portencia\n");
+		printf("\tFuncion potencia\n");
 		yylval.cadena = yytext;
-		return (CADENA);
+		return (CADEN);
 		}
 
 "("		{

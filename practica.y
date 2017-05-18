@@ -88,7 +88,7 @@ expca:		CADENA {$$ = $1; }
        else
            while( s = strstr(s, toRemove) )
                memmove(s, s+strlen(toRemove),1+strlen(s+strlen(toRemove)));
-           $$ = s
+           $$ = s;
    }
 ;
 

@@ -77,10 +77,7 @@ expen:  ENTERO              			{ $$ = $1; } |
             else
 				$$ = $1 / $3;
         } |
-		expca '(' expen ',' expen ')' 	{ $$ = pow($3,$5); } |
-		expca '-' expca					{
-			$$ = sizeof $1 - 1
-		}
+		expca '(' expen ',' expen ')' 	{ $$ = pow($3,$5); }
 ;
 
 expca:  CADENA              { $$ = $1; } |

@@ -3,7 +3,7 @@
 #include<string.h>
 #include<math.h>
 %}
-             
+
 /* Declaraciones de BISON */
 %union{
 	int entero;
@@ -20,12 +20,12 @@
 
 %left '+' '-'
 %left '*' '/'
-             
+
 /* Gramática */
 %%
-             
+
 input:    /* cadena vacía */
-        | input line             
+        | input line
 ;
 
 line:     '\n'
@@ -33,7 +33,7 @@ line:     '\n'
         | expen '\n'  { printf("\t\tResultado: %d\n", $1); }
         | expca '\n'  { printf("\t\tResultado: %s\n", $1); }
 ;
-             
+
 expre:  	REAL { $$ = $1; }
 	| '-' expre		 { $$ = - $2; }
 	| expre '+' expre        { $$ = $1 + $3;    }
@@ -76,11 +76,8 @@ expen:  	ENTERO { $$ = $1; }
 
 expca:		CADENA {$$ = $1; }
 	| expca '+' expca	 { char* s = malloc(sizeof(char)*(strlen($1)+strlen($3)+1));
-                                   strcpy(s,$1); 
+                                   strcpy(s,$1);
      		  		   strcat(s,$3);
-                                   $$ = s;	    }
-	| expca '+' expca	 { char* s = malloc(sizeof(char)*(strlen($1)+strlen($3)+1));
-                                   strcpy(s,substrae($1,$2)); 
                                    $$ = s;	    }
 ;
 
@@ -90,16 +87,16 @@ expca:		CADENA {$$ = $1; }
 int main() {
   yyparse();
 }
-             
+
 yyerror (char *s)
 {
   printf("--%s--\n", s);
 }
-            
-int yywrap()  
-{  
-  return 1;  
-}  
+
+int yywrap()
+{
+  return 1;
+}
 
 char* duplicate_segment(const char* token, int token_length) {
   char* dup = malloc(token_length + 1);
@@ -108,5 +105,3 @@ char* duplicate_segment(const char* token, int token_length) {
   dup[token_length] = 0;
   return dup;
 }
-
-

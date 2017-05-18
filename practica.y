@@ -75,10 +75,21 @@ expen:  	ENTERO { $$ = $1; }
 ;
 
 expca:		CADENA {$$ = $1; }
-	| expca '+' expca	 { char* s = malloc(sizeof(char)*(strlen($1)+strlen($3)+1));
-                                   strcpy(s,$1);
-     		  		   strcat(s,$3);
+	| expca '+' expca	 {
+        char* s = malloc(sizeof(char)*(strlen($1)+strlen($3)+1));
+        strcpy(s,$1);
+     	strcat(s,$3);
                                    $$ = s;	    }
+   | expca '-' expca       {
+       if(strlen(s) > strlen(toRemove))
+           yyerror("La segunda cadena es más grande que la primera");
+       else
+           char* s = malloc(sizeof(char)*(strlen($1)+1));
+           char* toRemove = malloc(sizeof(char)*(strlen($3)+1));
+           while( s = strstr(s, toRemove) )
+               memmove(s, s+strlen(toRemove),1+strlen(s+strlen(toRemove)));
+           $$ = s
+   }
 ;
 
 

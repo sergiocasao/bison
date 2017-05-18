@@ -28,34 +28,34 @@ input:  /* cadena vacía */
 ;
 
 line:   '\n' |
-		expre '\n'        	{ printf("\t\tResultado: %f\n", $1); } |
-		expen '\n'        	{ printf("\t\tResultado: %d\n", $1); } |
-		expca '\n'        	{ printf("\t\tResultado: %s\n", $1); }
+		expre '\n'        				{ printf("\t\tResultado: %f\n", $1); } |
+		expen '\n'        				{ printf("\t\tResultado: %d\n", $1); } |
+		expca '\n'        				{ printf("\t\tResultado: %s\n", $1); }
 ;
 
-expre:  REAL                { $$ = $1; } |
-        expre '+' expre     { $$ = $1 + $3; } |
-        expen '+' expre     { $$ = $1 + $3; } |
-        expre '+' expen     { $$ = $1 + $3; } |
-        expre '-' expre     { $$ = $1 - $3; } |
-        expen '-' expre     { $$ = $1 - $3; } |
-        expre '-' expen     { $$ = $1 - $3; } |
-        expre '*' expre     { $$ = $1 * $3; } |
-        expre '*' expre     { $$ = $1 * $3; } |
-        expen '*' expre     { $$ = $1 * $3; } |
-        expre '/' expre     {
+expre:  REAL                			{ $$ = $1; } |
+        expre '+' expre     			{ $$ = $1 + $3; } |
+        expen '+' expre     			{ $$ = $1 + $3; } |
+        expre '+' expen     			{ $$ = $1 + $3; } |
+        expre '-' expre     			{ $$ = $1 - $3; } |
+        expen '-' expre     			{ $$ = $1 - $3; } |
+        expre '-' expen     			{ $$ = $1 - $3; } |
+        expre '*' expre     			{ $$ = $1 * $3; } |
+        expre '*' expre     			{ $$ = $1 * $3; } |
+        expen '*' expre     			{ $$ = $1 * $3; } |
+        expre '/' expre     			{
             if($3 == 0.0)
 			      yyerror("Division por cero");
 		    else
 			$$ = $1 / $3;
         } |
-        expen '/' expre     {
+        expen '/' expre     			{
             if($3 == 0.0)
                 yyerror("Division por cero");
             else
                 $$ = $1 / $3;
         } |
-        expre '/' expen     {
+        expre '/' expen     			{
             if($3 == 0)
                 yyerror("Division por cero");
             else
@@ -63,17 +63,18 @@ expre:  REAL                { $$ = $1; } |
         }
 ;
 
-expen:  ENTERO              { $$ = $1; } |
-		'-' expen     		{ $$ = - $2; } |
-        expen '+' expen     { $$ = $1 + $3; } |
-        expen '-' expen     { $$ = $1 - $3; } |
-        expen '*' expen     { $$ = $1 * $3; } |
-        expen '/' expen     {
+expen:  ENTERO              			{ $$ = $1; } |
+		'-' expen     					{ $$ = - $2; } |
+        expen '+' expen     			{ $$ = $1 + $3; } |
+        expen '-' expen     			{ $$ = $1 - $3; } |
+        expen '*' expen     			{ $$ = $1 * $3; } |
+        expen '/' expen     			{
             if($3 == 0)
                 yyerror("Division por cero");
             else
 				$$ = $1 / $3;
-        }
+        } |
+		expca '(' expen ',' expen ')' { $$ = pow($3,$5); }
 ;
 
 expca:  CADENA              { $$ = $1; } |

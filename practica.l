@@ -6,17 +6,16 @@ NUMRE ([0-9]*\.[0-9]+)
 NUMEN [0-9]*
 CADEN \"[a-zA-z]*\"
 POTENCIA [Pp][Oo][Ww]
-
 %%
 
 {NUMRE}         {
-		printf("\tNúmero real %s\n",yytext);
+		printf("\tNumero real %s\n",yytext);
                 yylval.real = atof(yytext);
                 return (REAL);
                 }
 
 {NUMEN}         {
-		printf("\tNúmero entero %s\n",yytext);
+		printf("\tNumero entero %s\n",yytext);
                 yylval.entero = atoi(yytext);
                 return (ENTERO);
                 }
@@ -28,18 +27,18 @@ POTENCIA [Pp][Oo][Ww]
 		}
 
 {POTENCIA}	{
-		printf("\tFunción potencia\n");
+		printf("\tFuncion potencia\n");
 		yylval.cadena = yytext;
 		return (CADENA);
 		}
 
 "("		{
-		printf("\tParéntesis abierto\n");
+		printf("\tParentesis abierto\n");
                 return (yytext[0]);
 		}
 
 ")"		{
-		printf("\tParéntesis cerrado\n");
+		printf("\tParentesis cerrado\n");
                 return (yytext[0]);
 		}
 
@@ -49,7 +48,7 @@ POTENCIA [Pp][Oo][Ww]
 		}
 
 "+"	 	{
-		printf("\tSigno más\n");
+		printf("\tSigno mas\n");
                 return (yytext[0]);
                 }
 
